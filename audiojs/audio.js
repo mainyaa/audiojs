@@ -34,6 +34,7 @@
       autoplay: false,
       loop: false,
       preload: true,
+      trackLoading: true,
       imageLocation: path + 'player-graphics.gif',
       swfLocation: path + 'audiojs.swf',
       useFlash: (function() {
@@ -306,7 +307,10 @@
       if (audio.settings.useFlash) return;
 
       // Start tracking the load progress of the track.
-      container[audiojs].events.trackLoadProgress(audio);
+      console.log(audio.settings.trackLoading)
+      if (audio.settings.trackLoading) {
+        container[audiojs].events.trackLoadProgress(audio);
+      }
 
       container[audiojs].events.addListener(audio.element, 'timeupdate', function(e) {
         audio.updatePlayhead.apply(audio);
@@ -614,7 +618,10 @@
       // The now outdated `load()` method is required for Safari 4
       this.element.load();
       this.mp3 = mp3;
-      container[audiojs].events.trackLoadProgress(this);
+      console.log(this.settings.trackLoading)
+      if (this.settings.trackLoading) {
+        container[audiojs].events.trackLoadProgress(this);
+      }
     },
     loadError: function() {
       this.settings.loadError.apply(this);
@@ -655,7 +662,10 @@
       if (!this.settings.preload) {
         this.settings.preload = true;
         this.element.setAttribute('preload', 'auto');
-        container[audiojs].events.trackLoadProgress(this);
+        console.log(this.settings.trackLoading)
+        if (this.settings.trackLoading) {
+          container[audiojs].events.trackLoadProgress(this);
+        }
       }
       this.playing = true;
       this.element.play();
