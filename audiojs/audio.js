@@ -307,7 +307,6 @@
       if (audio.settings.useFlash) return;
 
       // Start tracking the load progress of the track.
-      console.log(audio.settings.trackLoading)
       if (audio.settings.trackLoading) {
         container[audiojs].events.trackLoadProgress(audio);
       }
@@ -618,7 +617,6 @@
       // The now outdated `load()` method is required for Safari 4
       this.element.load();
       this.mp3 = mp3;
-      console.log(this.settings.trackLoading)
       if (this.settings.trackLoading) {
         container[audiojs].events.trackLoadProgress(this);
       }
@@ -662,7 +660,6 @@
       if (!this.settings.preload) {
         this.settings.preload = true;
         this.element.setAttribute('preload', 'auto');
-        console.log(this.settings.trackLoading)
         if (this.settings.trackLoading) {
           container[audiojs].events.trackLoadProgress(this);
         }
